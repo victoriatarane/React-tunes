@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
   };
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Playlist, { foreignKey: 'userId' });
   };
   User.getCurrentUserById = async function (id) {
     return await User.scope('currentUser').findByPk(id);
