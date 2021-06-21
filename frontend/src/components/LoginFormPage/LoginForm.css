@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(100 100 255);
+}
+
+#modal-content {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 5%);
+    background-color:white;
+    margin: 10px;
+    padding: 20px;
+}
+
+label {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.login-field {
+    margin: 10px 0 10px 0;
+    border-color: #bbc0c4;
+    background-color: white;
+    box-shadow: none;
+    color: #3c4146;
+    border-radius: 3px;
+    padding: .6em .7em;
+    border: 1px solid #bbc0c4;
+    width: 100% !important;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+.submit-button {
+    margin-top: 10px;
+    width: 97%;
+}
+
+input{
+    margin-left: 20px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+#form-content {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 5%);
+    background-color:white;
+    margin: 10px;
+    padding: 20px;
+}
