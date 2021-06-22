@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+// import { createStore, combineReducers} from 'redux';
 
 const LOAD = 'songs/LOAD'; // action type
 
@@ -19,13 +20,33 @@ export const getSongs = () => async dispatch => {
 const songReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD: {
+            const allSongs = {};
+            action.list.forEach(song => {
+                allSongs[song.id] = song;
+            })
             return {
-                ...state,
+                ...allSongs,
+                state, 
+                list: action.list,
             } 
-
         }
+        default:
+            return state;
     }
 }
+
+
+// {
+//     const allPokemon = {};
+//     action.list.forEach(pokemon => {
+//         allPokemon[pokemon.id] = pokemon;
+//     });
+//     return {
+//         ...allPokemon,
+//         ...state,
+//         list: sortList(action.list),
+//     };
+// }
 
 
 //thunk action to get a single Song (songId)
@@ -33,3 +54,5 @@ const songReducer = (state = {}, action) => {
 //     const res = await csrfFetch(`/api/song/${songId}`);
 //     const data = await res.json();
 // }
+
+export default songReducer;
