@@ -6,7 +6,7 @@ const { Song, Artist, Review, Like } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async function (_req, res) {
-    const songs = await Songs.findAll(
+    const songs = await Song.findAll(
         {
             include: [{
                 model: Artist
