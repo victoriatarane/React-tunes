@@ -7,7 +7,7 @@ import Song from './song';
 
 function SongsList() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
+    //const sessionUser = useSelector((state) => state.session.user);
     const songs = useSelector((state) => state.songs);
     // console.log(songs)
     useEffect(() => {
@@ -18,8 +18,12 @@ function SongsList() {
         <div>
             <ul>
 
-                {/* {Object.values(songs).map((song) =>
-                    <Song song={song} key={song.id} />)} */}
+                {Object.values(songs).map((song) => {
+                    if (song.songUrl) {
+                        return <Song song={song} key={song.id} />
+                    }
+                    return null;
+                    })}
             </ul>
         </div>
     )

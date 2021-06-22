@@ -10,10 +10,10 @@ router.get('/', asyncHandler(async function (_req, res) {
         {
             include: [{
                 model: Artist
-            },{
-                model: Review
-            }, {
-                model: Like
+            // },{
+            //     model: Review
+            // }, {
+            //     model: Like
             }]
         }
     );
