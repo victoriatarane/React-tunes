@@ -55,6 +55,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   User.associate = function (models) {
     User.hasMany(models.Playlist, { foreignKey: 'userId' });
+    User.belongsToMany(models.Song, { foreignKey: 'userId', otherKey: 'songId', through: 'Review'});
+    User.belongsToMany(models.Song, { foreignKey: 'userId', otherKey: 'songId', through: 'Like' });
   };
   User.getCurrentUserById = async function (id) {
     return await User.scope('currentUser').findByPk(id);

@@ -4,11 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     songId: DataTypes.INTEGER,
     review: DataTypes.TEXT,
-    like: DataTypes.BOOLEAN
   }, {});
   Review.associate = function(models) {
-    Review.belongsTo(models.User, { foreignKey: 'userId' });
-    Review.belongsTo(models.Song, { foreignKey: 'songId' });
+    // Review.belongsToMany(models.User, { foreignKey: 'userId' });
+    // Review.belongsToMany(models.Song, { foreignKey: 'songId' });
   };
   return Review;
 };
