@@ -10,27 +10,51 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <nav className="navbar">
+                    <div className="link">
+                        <i className="fas fa-home">
+                        <NavLink className="navlink home" to="/">Home</NavLink>
+                        </i>
+                    </div>
+                    <ProfileButton user={sessionUser} />
+                    <div className="link">
+                        <i className="fas fa-cog">
+                        <NavLink className="navlink signup" to="/signup">Settings</NavLink>
+                        </i>
+                    </div>
+                    <div className="link">
+                        <i className="fas fa-music">
+                        <NavLink className="navlink songs" to="/songs">Songs</NavLink>
+                        </i>
+                    </div>
+                </nav>
+            </>
+            
         );
     } else {
         sessionLinks = (
             <>
                 <nav className="navbar">
                     <div className="link">
-                        <i className="fas fa-home"></i>
-                        <NavLink className="home" to="/">Home</NavLink>
+                        <i className="fas fa-home">
+                        <NavLink className="navlink home" to="/">Home</NavLink>
+                        </i>
                     </div>
                     <div className="link">
-                        <i className="fas fa-theater-masks"></i>
-                        <NavLink className="login" to="/login">Log In</NavLink>
+                        <i className="fas fa-theater-masks">
+                        <NavLink className="navlink navlink" to="/login">Log In</NavLink>
+                        </i>
                     </div>
                     <div className="link">
-                        <i className="fas fa-file-signature"></i>
-                        <NavLink className="signup" to="/signup">Sign Up</NavLink>
+                        <i className="fas fa-file-signature">
+                        <NavLink className="navlink signup" to="/signup">Sign Up</NavLink>
+                        </i>
                     </div>
                     <div className="link">
-                        <i className="fas fa-music"></i>
-                        <NavLink className="songs" to="/songs">Songs</NavLink>
+                        <i className="fas fa-music">
+                        <NavLink className="navlink songs" to="/songs">Songs</NavLink>
+                        </i>
                     </div>
                 </nav>
             </>

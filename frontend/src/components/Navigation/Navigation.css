@@ -1,23 +1,60 @@
 .navbar {
+  background-color: rgb(178 143 169);
+  position: absolute;
+  top: 0px; 
   width: 100%;
-  height: 50px;
-  background-color: #fafafb;
-  border-top: 3px solid #f48024;
-  box-shadow: 0px 2px 2px rgb(12 13 14 / 15%);
-  font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
-  color: #535a60;
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
-  margin-bottom: 10px;
-  position: fixed;
-  top: 0;
-  z-index: 2;
+  margin-left: 0px;
 }
 
-/* .link {
-
+.side-nav {
+  background-color: rgb(207 188 149);
+  width: 120px;
+  position: absolute;
+  left: 0px; 
+  top: 0px; 
+  height: 100%;
+  margin-left: 0px;
 }
 
+.sidebarlink {
+  margin: 5px;
+  margin-top: 50px;
+}
+
+.link {
+  display: inline-block;
+  
+  height: 40px;
+  width: 70px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: rgb(189 0 38);
+  border-radius: 10px;
+}
+
+.navlink {
+  margin-left: 10px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilebutton {
+  display: inline-block;
+  height: 70px;
+  width: 100px;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: rgb(189 0 38);
+  border-radius: 10px;
+}
+/*
 .login {
 
 }

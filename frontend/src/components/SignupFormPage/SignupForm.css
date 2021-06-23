@@ -4,6 +4,11 @@ body {
 
 #form-content {
     box-sizing: border-box;
+    width: 500px;
+    position: absolute;
+    display: inline-block;
+    left: 400px;
+    top: 130px;
     border: 1px solid transparent;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%);
@@ -48,5 +53,5 @@ input{
 
 .submit-button {
     margin-top: 10px;
-    width: 97%;
+    width: 100%;
 }
