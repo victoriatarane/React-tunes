@@ -17,15 +17,19 @@ function Navigation({ isLoaded }) {
             <>
                 <nav className="navbar">
                     <div className="link">
+                        <i className="fas fa-home"></i>
                         <NavLink className="home" to="/">Home</NavLink>
                     </div>
                     <div className="link">
+                        <i className="fas fa-theater-masks"></i>
                         <NavLink className="login" to="/login">Log In</NavLink>
                     </div>
                     <div className="link">
+                        <i className="fas fa-file-signature"></i>
                         <NavLink className="signup" to="/signup">Sign Up</NavLink>
                     </div>
                     <div className="link">
+                        <i className="fas fa-music"></i>
                         <NavLink className="songs" to="/songs">Songs</NavLink>
                     </div>
                 </nav>

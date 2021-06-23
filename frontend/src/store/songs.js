@@ -2,10 +2,16 @@ import { csrfFetch } from './csrf';
 // import { createStore, combineReducers} from 'redux';
 
 const LOAD = 'songs/LOAD'; // action type
+const LIKES = 'songs/LIKES';
 
 const load = list => ({ // action creator
     type: LOAD,
     list,
+});
+
+const likes = list => ({
+    type: LIKES,
+    likeNum: list.length,
 })
 
 export const getSongs = () => async dispatch => {
@@ -31,6 +37,9 @@ const songReducer = (state = {}, action) => {
                 list: action.list,
             } 
         }
+        // case LIKES: {
+            
+        // }
         default:
             return state;
     }

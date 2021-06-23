@@ -2,7 +2,7 @@
 // import { useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 
-const Song = ({ song }) => {
+const Song = ({ song, likes }) => {
     // const dispatch = useDispatch();
     // const history = useHistory();
     // const [showReviews, setShowReviews] = useState(false);
@@ -34,9 +34,9 @@ const Song = ({ song }) => {
             <audio className="audio" controls>
                 <source src={song.songUrl} type="audio/ogg"></source>
             </audio>
-            <label className="likes">
-                <button>Likes</button>
-            </label>
+            <label className="likes">Likes: {likes}</label>
+            <button>Like</button>
+            
             
         </li>
     )
