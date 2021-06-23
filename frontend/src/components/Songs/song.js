@@ -1,17 +1,17 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import './Songs.css';
 
 
-const Song = ({ song, likes }) => {
+const Song = ({ song }) => {
     // const dispatch = useDispatch();
     // const history = useHistory();
     // const [showReviews, setShowReviews] = useState(false);
-    // const [userId, setUserId] = useState(1);
-    // const [songId, setSongId] = useState(1);
+    const [userId, setUserId] = useState(1);
+    const [songId, setSongId] = useState(1);
     // const [review, setReview] = useState('');
-    // const [likes, setLikes] = useState(false);
+    const [likes, setLikes] = useState(false);
 
     // const updateUserId = (e) => setUserId(e.target.value);
     // const updateSongId = (e) => setSongId(e.target.value);
@@ -37,7 +37,7 @@ const Song = ({ song, likes }) => {
                 <source src={song.songUrl} type="audio/ogg"></source>
             </audio>
             <label className="likes">Likes: {likes}</label>
-            <button>Like</button>
+            <button onClick={()=>setLikes(!likes)}>Like</button>
             
             
         </li>
