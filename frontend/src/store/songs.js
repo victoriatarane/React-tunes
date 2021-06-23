@@ -69,17 +69,19 @@ export const getSongs = () => async dispatch => {
 
 
 export const likeSong = (payload) => async dispatch => {
-    const res = await csrfFetch(`api/song/${payload.songId}`, {
+    const res = await csrfFetch(`/api/songs/${payload.songId}/like`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),        
     })
-    const data = await res.json();
-
-    dispatch(addLike(data));
-    return data;
+    if (res.ok){
+        const data = await res.json();
+    
+        dispatch(addLike(data));
+        return data;
+    }
 }
 
 export const leaveReview = (payload) => async (dispatch) => {
@@ -87,7 +89,7 @@ export const leaveReview = (payload) => async (dispatch) => {
     const res = await csrfFetch('/api/songs', {
         method: "POST",
         headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": 'application/json',
         },
         body: JSON.stringify(payload),
     });
@@ -97,7 +99,11 @@ export const leaveReview = (payload) => async (dispatch) => {
     dispatch(addReview(data));
     return data;
 }
-
+// const initialState = {
+//     songs: [],
+//     likes: []
+//     //reviews
+// }
 const songReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD: {
@@ -107,7 +113,7 @@ const songReducer = (state = {}, action) => {
             })
             return {
                 ...allSongs,
-                state, 
+                ...state, 
                 list: action.list,
             } 
         }
