@@ -1,7 +1,7 @@
 /* TODO Add site wide styles */
 body {
-    background-image: url("/Users/Vic/Desktop/aA/react_tunes/react_tunes/frontend/src/jazz-makers-i-sax,1926241.jpeg");
-    background-repeat: no-repeat;
+    background-image: url("./resize.jpeg");
+    /* background-repeat: no-repeat; */
     background-size: 100%;
     /* background-attachment: fixed; */
     background-position: top right;

@@ -1,0 +1,7 @@
+.song-li {
+    background-image: url("../../marble2.jpeg");
+    margin: 100px;
+    border-radius: 12px;
+    width: 100%;
+    height: 100px;
+}

@@ -1,17 +1,22 @@
 .navbar {
-  background-color: rgb(178 143 169);
-  position: absolute;
+  background-color: rgb(112 143 192);
+  /* background-image: url("/Users/Vic/Desktop/aA/react_tunes/react_tunes/frontend/src/marbles.jpeg"); */
+  /* background-position: center right; */
+  position: fixed;
   top: 0px; 
   width: 100%;
   margin-left: 0px;
 }
 
 .side-nav {
-  background-color: rgb(207 188 149);
+  background-color: rgb(183 183 183);
+  /* background-image: url("/Users/Vic/Desktop/aA/react_tunes/react_tunes/frontend/src/marbles.jpeg"); */
+  /* background-position: center right; */
   width: 120px;
-  position: absolute;
+  position: fixed;
   left: 0px; 
   top: 0px; 
+  bottom: 0px;
   height: 100%;
   margin-left: 0px;
 }
@@ -23,7 +28,9 @@
 
 .link {
   display: inline-block;
-  
+  background-image: url("../../marble2.jpeg");
+  background-position: center right;
+  /* opacity: 0.5; */
   height: 40px;
   width: 70px;
   padding: 15px;
@@ -31,7 +38,7 @@
   margin-bottom: 20px;
   margin-left: 100px;
   margin-right: 100px;
-  background-color: rgb(189 0 38);
+  background-color: rgb(53 78 120);
   border-radius: 10px;
 }
 
