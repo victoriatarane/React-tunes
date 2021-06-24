@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Review.associate = function(models) {
     // Review.belongsToMany(models.User, { foreignKey: 'userId' });
-    // Review.belongsToMany(models.Song, { foreignKey: 'songId' });
+    Review.belongsTo(models.Song, { foreignKey: 'songId' });
   };
   return Review;
 };
