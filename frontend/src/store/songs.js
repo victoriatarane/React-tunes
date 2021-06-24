@@ -86,18 +86,19 @@ export const likeSong = (payload) => async dispatch => {
 
 export const leaveReview = (payload) => async (dispatch) => {
     // const {userId, songId, review, likes} = review;
-    const res = await csrfFetch('/api/songs', {
+    const res = await csrfFetch(`/api/songs/${payload.songId}/review`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
         },
         body: JSON.stringify(payload),
     });
-
-    const data = await res.json();
-
-    dispatch(addReview(data));
-    return data;
+    if (res.ok){
+        const data = await res.json();
+    
+        dispatch(addReview(data));
+        return data;
+    }
 }
 // const initialState = {
 //     songs: [],
