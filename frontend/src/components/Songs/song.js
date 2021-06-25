@@ -17,10 +17,6 @@ const Song = ( {song} ) => {
     const [review, setReview] = useState('');
     const [likes, setLikes] = useState(false);
 
-    // const updateUserId = (e) => setUserId(e.target.value);
-    // const updateSongId = (e) => setSongId(e.target.value);
-    // const updateReview = (e) => setReview(e.target.value);
-    // const updateLikes = (e) => setLikes(e.target.value);
     const songId = song.id;
     
     // useEffect(() => {

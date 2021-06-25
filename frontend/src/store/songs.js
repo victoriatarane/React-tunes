@@ -2,9 +2,6 @@ import { csrfFetch } from './csrf';
 // import { createStore, combineReducers} from 'redux';
 
 const LOAD = 'songs/LOAD'; // action type
-// const LIKES = 'song/LIKES';
-// const LIKE_SONG = 'song/LIKE_SONG';
-// const REVIEWS = 'song/REVIEWS';
 const ADD_LIKE = 'song/ADD_LIKE';
 const ADD_REVIEW = 'song/REVIEW';
 
@@ -12,17 +9,6 @@ const load = list => ({ // action creator
     type: LOAD,
     list,
 });
-
-// const likes = list => ({
-//     type: LIKES,
-//     likeNum: list.length,
-// })
-
-// const reviews = list => ({
-//     type: REVIEWS,
-//     reviews,
-// })
-
 
 const addLike = (like) => {
     return {
@@ -37,12 +23,6 @@ const addReview = (review) => {
         review,
     }
 }
-
-// const likeSong = (songId) => {
-//     return {
-//         type: LIKE_SONG
-//     }
-// }
 
 export const getSongs = () => async dispatch => {
     const response = await csrfFetch(`/api/songs`);
@@ -95,16 +75,11 @@ export const leaveReview = (payload) => async (dispatch) => {
     });
     if (res.ok){
         const data = await res.json();
-    
-        dispatch(addReview(data));
+        dispatch(addReview(data.review));
         return data;
     }
 }
-// const initialState = {
-//     songs: [],
-//     likes: []
-//     //reviews
-// }
+
 const songReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD: {
@@ -124,17 +99,8 @@ const songReducer = (state = {}, action) => {
             return likes;
         case (ADD_REVIEW):
             let reviews = { ...state };
-            reviews.review = action;
+            reviews.review = action.review;
             return reviews;
-        // case LIKES: {
-            
-        // }
-        //case REVIEWS: {
-
-        //}
-        // case LIKE_SONG: {
-        //     return { ...state, }
-        // }
         default:
             return state;
     }

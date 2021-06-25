@@ -2,7 +2,7 @@
 const Reviews = ({ review }) => {
 
     return (
-        <p>{review.review}</p>
+        <p className="review-display">{review.review}</p>
     )
 }
 

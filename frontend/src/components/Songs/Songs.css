@@ -43,6 +43,13 @@ p {
     width: 200px;
     font-size: 20px;
 }
+
+.review-display {
+    box-sizing: border-box;
+    border: 1px;
+    /* background-color: black; */
+    
+}
 /* textarea {
     rows: 5;
     columns: 30;
