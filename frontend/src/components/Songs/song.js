@@ -42,7 +42,8 @@ const Song = ( {song} ) => {
             songId,
             likes,
         };
-        dispatch(likeSong(payload))
+        await dispatch(likeSong(payload))
+        dispatch(getSongs())
     }
 
     const handleReviewSubmit = async (e) => {
