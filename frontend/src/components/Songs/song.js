@@ -20,12 +20,23 @@ const Song = ({ song }) => {
     // const updateSongId = (e) => setSongId(e.target.value);
     // const updateReview = (e) => setReview(e.target.value);
     // const updateLikes = (e) => setLikes(e.target.value);
+    const songId = song.id;
     
     // useEffect(() => {
-    //     dispatch(likeSong())
-    // }, [dispatch])
+    //     dispatch(likeSong(likes))
+    //     dispatch(leaveReview(review))
+    // }, [dispatch, userId, songId, likes, review])
 
-    const songId = song.id;
+    const numLikes = () => {
+        let num = 0;
+        Object.values(likes).forEach((l) => {
+            if (l.like){
+                num++
+            }
+        })
+        return num
+    }
+
     const handleLikeSubmit = async (e) => {
         e.preventDefault();
         setLikes(!likes);
@@ -39,7 +50,7 @@ const Song = ({ song }) => {
 
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
-        setReview(e.value);
+        setReview(e.target.value);
         const payload = {
             userId,
             songId,
@@ -52,19 +63,20 @@ const Song = ({ song }) => {
     return (
         <li className="song-li">
             <label className="song-name">
-                Song name: {song.title}
+                <i class="fas fa-compact-disc"/> 
+                <p>{song.title}</p>
             </label>
             <audio className="audio" controls>
                 <source src={song.songUrl} type="audio/ogg"></source>
             </audio>
-            <label className="likes">Likes: {likes.length}</label>
-            <button onClick={handleLikeSubmit}>Like</button>
-            <button className="showReviews" onClick={() => setShowReviews(!showReviews)}>Show Reviews</button>
+            <label className="likes">Likes: {numLikes}</label>
+            <button onClick={handleLikeSubmit}>Like <i class="far fa-thumbs-up"/></button>
+            <button className="showReviews" onClick={() => setShowReviews(!showReviews)}>View Comments <i class="fas fa-comments"/></button>
             {showReviews ?
-                song.Reviews.map((review) => <Review key={review.id} review={review}></Review>)
+                song.Reviews.map((review) => <Review key={review.id} className="reviewDiv" review={review}></Review>)
                 : null}
             <input className="review" value={song.review} onClick={(e) => setReview(e.target.value)} />
-            <button className="submit" type="submit" onClick={handleReviewSubmit}>Submit Review</button>
+            <button className="submit" type="submit" onClick={handleReviewSubmit}>Submit Comment <i class="far fa-comment-dots"/></button>
 
 
         </li>

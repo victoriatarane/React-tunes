@@ -15,10 +15,6 @@ router.get('/', asyncHandler(async function (_req, res) {
                 Artist,
                 Like,
                 Review,
-                // },{
-                //     model: Review
-                // }, {
-                //     model: Like
             ]
         }
     );
@@ -28,10 +24,6 @@ router.get('/', asyncHandler(async function (_req, res) {
 router.post('/:id(\\d+)/like', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const { userId, songId, likes } = req.body;
     console.log(userId, songId, likes)
-    // const songId = req.params.id;
-    // console.log(req.session)
-    // const userId = req.session.auth.userId;
-
     const like = await Like.create({ userId, songId, likes });
 
     return res.json({ like });
@@ -40,7 +32,7 @@ router.post('/:id(\\d+)/like', csrfProtection, requireAuth, asyncHandler(async (
 router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const { userId, songId, reviews } = req.body;
     console.log(reviews)
-    const review = await Review.create({ review, userId, songId });
+    const review = await Review.create({ reviews, userId, songId });
     return res.json({ review });
 }));
 
