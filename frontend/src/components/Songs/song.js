@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import './Songs.css';
@@ -6,7 +6,8 @@ import { likeSong, leaveReview } from '../../store/songs.js';
 import Review from './review.js';
 
 
-const Song = ({ song }) => {
+const Song = ( {song} ) => {
+
     const dispatch = useDispatch();
     // const history = useHistory();
     const [showReviews, setShowReviews] = useState(false);
@@ -27,15 +28,15 @@ const Song = ({ song }) => {
     //     dispatch(leaveReview(review))
     // }, [dispatch, userId, songId, likes, review])
 
-    const numLikes = () => {
-        let num = 0;
-        Object.values(likes).forEach((l) => {
-            if (l.like){
-                num++
-            }
-        })
-        return num
-    }
+
+
+    let numLikes = song.Likes.length
+    useEffect(()=>{
+
+        if (likes) numLikes++
+
+        return numLikes;
+    }, [likes]);
 
     const handleLikeSubmit = async (e) => {
         e.preventDefault();
@@ -62,6 +63,9 @@ const Song = ({ song }) => {
 
     return (
         <li className="song-li">
+            <label className="artist">
+                <p>{song.Artist.artistName}</p>
+            </label>
             <label className="song-name">
                 <i class="fas fa-compact-disc"/> 
                 <p>{song.title}</p>
