@@ -17,13 +17,12 @@ function SongsList() {
     return (
         <div>
             <ul>
-
                 {Object.values(songs).map((song) => {
-                    if (song.songUrl) {
+                    if (song?.songUrl) {
                         return <Song song={song} key={song.id} />
                     }
                     return null;
-                    })}
+                })}
             </ul>
         </div>
     )

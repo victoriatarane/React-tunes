@@ -30,10 +30,10 @@ router.post('/:id(\\d+)/like', csrfProtection, requireAuth, asyncHandler(async (
 }));
 
 router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
-    const { userId, songId, reviews } = req.body;
-    console.log(reviews)
-    const review = await Review.create({ reviews, userId, songId });
-    return res.json({ review });
+    const { userId, songId, review } = req.body;
+    console.log(review)
+    const newReview = await Review.create({ userId, songId, review });
+    return res.json({ newReview });
 }));
 
 module.exports = router;

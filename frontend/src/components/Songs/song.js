@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import './Songs.css';
-import { likeSong, leaveReview } from '../../store/songs.js';
+import { likeSong, leaveReview, getSongs } from '../../store/songs.js';
 import Review from './review.js';
 
 
@@ -53,8 +53,9 @@ const Song = ( {song} ) => {
             songId,
             review,
         };
-        dispatch(leaveReview(payload));
-        console.log(payload)
+        await dispatch(leaveReview(payload));
+        dispatch(getSongs())
+        // console.log(payload)
     }
 
     return (
@@ -63,20 +64,20 @@ const Song = ( {song} ) => {
                 <p>{song.Artist.artistName}</p>
             </label>
             <label className="song-name">
-                <i class="fas fa-compact-disc"/> 
+                <i className="fas fa-compact-disc"/> 
                 <p>{song.title}</p>
             </label>
             <audio className="audio" controls>
                 <source src={song.songUrl} type="audio/ogg"></source>
             </audio>
             <label className="likes">Likes: {numLikes}</label>
-            <button onClick={handleLikeSubmit}>Like <i class="far fa-thumbs-up"/></button>
-            <button className="showReviews" onClick={() => setShowReviews(!showReviews)}>View Comments <i class="fas fa-comments"/></button>
+            <button onClick={handleLikeSubmit}>Like <i className="far fa-thumbs-up"/></button>
+            <button className="showReviews" onClick={() => setShowReviews(!showReviews)}>View Comments <i className="fas fa-comments"/></button>
             {showReviews ?
                 song.Reviews.map((review) => <Review key={review.id} className="reviewDiv" review={review}></Review>)
                 : null}
-            <input className="review" value={song.review} onClick={(e) => setReview(e.target.value)} />
-            <button className="submit" type="submit" onClick={handleReviewSubmit}>Submit Comment <i class="far fa-comment-dots"/></button>
+            <input className="review" value={review} onChange={(e) => setReview(e.target.value)} />
+            <button className="submit" type="submit" onClick={handleReviewSubmit}>Submit Comment <i className="far fa-comment-dots"/></button>
 
 
         </li>
