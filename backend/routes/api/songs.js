@@ -36,4 +36,13 @@ router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async
     return res.json({ newReview });
 }));
 
+// router.put('/:id(\\d+)/review/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+
+// }))
+
+// router.delete('/:id(\\d+)/review/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+//     const reviewId = await Review.deleteItem(req.params.id);
+//     return res.json({ reviewId });
+// }))
+
 module.exports = router;

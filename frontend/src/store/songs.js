@@ -4,6 +4,8 @@ import { csrfFetch } from './csrf';
 const LOAD = 'songs/LOAD'; // action type
 const ADD_LIKE = 'song/ADD_LIKE';
 const ADD_REVIEW = 'song/REVIEW';
+// const EDIT_REVIEW = 'song/EDIT_REVIEW';
+// const DELETE_REVIEW = 'song/DELETE_REVIEW';
 
 const load = list => ({ // action creator
     type: LOAD,
@@ -23,6 +25,16 @@ const addReview = (review) => {
         review,
     }
 }
+
+// const edit = (review) => ({
+//     type: EDIT_REVIEW,
+//     review,
+// });
+
+// const deleteReview = (reviewId, songId) => ({
+//     type: DELETE_REVIEW,
+//     reviewId,
+// })
 
 export const getSongs = () => async dispatch => {
     const response = await csrfFetch(`/api/songs`);
@@ -66,6 +78,21 @@ export const leaveReview = (payload) => async (dispatch) => {
     }
 }
 
+// export const deleteReviews = (reviewId) => async (dispatch) => {
+//     const res = await csrfFetch(`/api/songs/:id(\\d+)/review/${reviewId}`, {
+//         method: "DELETE",
+//         headers: {
+//             "Content-Type": 'application/json',
+//         },
+//         body: JSON.stringify(reviewId),
+//     });
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(deleteReview(data.reviewId))
+//         return data;
+//     }
+// }
+
 const songReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD: {
@@ -88,6 +115,17 @@ const songReducer = (state = {}, action) => {
             // reviews.author = user.findById[reviews.userId].username;
             reviews.review = action.review;
             return reviews;
+        // case (EDIT_REVIEW): {
+        //     return {
+        //         ...state,
+        //         [action.review.id]: action.review,
+        //     }
+        // }
+        // case (DELETE_REVIEW): {
+        //     const newState = { ...state };
+        //     delete newState[action.reviewId];
+        //     return newState;
+        // }
         default:
             return state;
     }
