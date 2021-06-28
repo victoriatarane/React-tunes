@@ -34,19 +34,6 @@ export const getSongs = () => async dispatch => {
     }
 }
 
-// export const getLikes = (songId) => async dispatch => {
-//     const response = await csrfFetch(`api/song/${songId}`);
-
-//     if (response.ok) {
-//         const likes = await response.json();
-//         dispatch(likes(list));
-//         let likeNum = list.length;
-//         return likeNum;
-//     }
-// }
-
-// payload.
-
 
 export const likeSong = (payload) => async dispatch => {
     const res = await csrfFetch(`/api/songs/${payload.songId}/like`, {
@@ -98,6 +85,7 @@ const songReducer = (state = {}, action) => {
             return likes;
         case (ADD_REVIEW):
             let reviews = { ...state };
+            // reviews.author = user.findById[reviews.userId].username;
             reviews.review = action.review;
             return reviews;
         default:

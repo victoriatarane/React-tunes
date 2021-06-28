@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import './Songs.css';
@@ -19,11 +19,6 @@ const Song = ({ song }) => {
     const [numLikes, setNumLikes] = useState(song.Likes.length);
 
     const songId = song.id;
-    
-    // useEffect(()=>{
-
-        
-    // }, [numLikes]);
 
     const handleLikeSubmit = async (e) => {
         e.preventDefault();

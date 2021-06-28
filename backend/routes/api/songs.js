@@ -23,7 +23,7 @@ router.get('/', asyncHandler(async function (_req, res) {
 
 router.post('/:id(\\d+)/like', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const { userId, songId, likes } = req.body;
-    console.log(userId, songId, likes)
+    // console.log(userId, songId, likes)
     const like = await Like.create({ userId, songId, likes });
 
     return res.json({ like });
@@ -31,7 +31,7 @@ router.post('/:id(\\d+)/like', csrfProtection, requireAuth, asyncHandler(async (
 
 router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const { userId, songId, review } = req.body;
-    console.log(review)
+    // console.log(review)
     const newReview = await Review.create({ userId, songId, review });
     return res.json({ newReview });
 }));

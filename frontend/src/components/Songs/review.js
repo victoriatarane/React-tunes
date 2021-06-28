@@ -1,8 +1,12 @@
 
 const Reviews = ({ review }) => {
-
+    // const user = User.findById(review.userId);
+    // const userName = user.username;
     return (
-        <p className="review-display">{review.review}</p>
+        <div>
+            {/* <p className="reviewer" >{review.author}</p> */}
+            <p className="review-display">{review.review}</p>
+        </div>
     )
 }
 

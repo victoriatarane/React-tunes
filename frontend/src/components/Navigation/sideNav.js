@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Navigation.css';
+// import { BrowseMusic } from '../BrowseMusic/index';
 
 function SideNav({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
