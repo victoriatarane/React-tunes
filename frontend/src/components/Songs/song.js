@@ -6,7 +6,7 @@ import { likeSong, leaveReview, getSongs } from '../../store/songs.js';
 import Review from './review.js';
 
 
-const Song = ( {song} ) => {
+const Song = ({ song }) => {
 
     const dispatch = useDispatch();
     // const history = useHistory();
@@ -16,27 +16,19 @@ const Song = ( {song} ) => {
     // const [songId, setSongId] = useState(1);
     const [review, setReview] = useState('');
     const [likes, setLikes] = useState(false);
+    const [numLikes, setNumLikes] = useState(song.Likes.length);
 
     const songId = song.id;
     
-    // useEffect(() => {
-    //     dispatch(likeSong(likes))
-    //     dispatch(leaveReview(review))
-    // }, [dispatch, userId, songId, likes, review])
+    // useEffect(()=>{
 
-
-
-    let numLikes = song.Likes.length
-    useEffect(()=>{
-
-        if (likes) numLikes++
-
-        return numLikes;
-    }, [likes]);
+        
+    // }, [numLikes]);
 
     const handleLikeSubmit = async (e) => {
         e.preventDefault();
         setLikes(!likes);
+        setNumLikes(likes!==true ? numLikes+1 : numLikes-1)
         const payload = {
             userId,
             songId,

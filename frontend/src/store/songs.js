@@ -87,8 +87,8 @@ const songReducer = (state = {}, action) => {
                 allSongs[song.id] = song;
             })
             return {
-                ...allSongs,
                 ...state, 
+                ...allSongs,
                 list: action.list,
             } 
         }
