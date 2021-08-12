@@ -11,6 +11,10 @@
     "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"
   },
+  "engines": {
+    "npm": "6.14.12",
+    "node": "12.22.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
