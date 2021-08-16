@@ -10,7 +10,7 @@ module.exports = {
     return queryInterface.bulkInsert('Songs', [
       {
         title: "Rockabye",
-        songUrl: "https://res.cloudinary.com/dbpbcyobo/video/upload/v1622052372/01._Clean_Bandit_-_Rockabye_feat._Sean_Paul_Anne-Marie_Jack_Wins_Remix_lomcbh.mp3",
+        songUrl: "https://www.dropbox.com/home/React-tunes%20songs?preview=01.+Clean+Bandit+-+Rockabye+(feat.+Sean+Paul+%26+Anne-Marie)+%5BJack+Wins+Remix%5D.mp3",
         artistId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
