@@ -14,7 +14,7 @@ module.exports = {
         unique: true,
       },
       songUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(500),
         allowNull: false,
         unique: true,
       },

@@ -40,9 +40,27 @@ router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async
 
 // }))
 
-// router.delete('/:id(\\d+)/review/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
-//     const reviewId = await Review.deleteItem(req.params.id);
-//     return res.json({ reviewId });
-// }))
+router.delete('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+    let reviewId = req.params.id;
+    let review = await db.Review.findByPk(reviewId)
+    await Review.destroy({where: { id: review.id }});
+    return review.id
+
+
+
+    // console.log('THIS IS REQ', req)
+    // let reviewId = await Review.deleteItem(req);
+    // return res.json({ reviewId });
+
+
+    // const { userId, songId, review } = req.body;
+    // const newReview = await Review.create({ userId, songId, review });
+    // return res.json({ newReview });
+}))
+
+//router.delete("/:id", asyncHandler(async function (req, res) {
+// const itemId = await ItemsRepository.deleteItem(req.params.id);
+// return res.json({ itemId });
+// }));
 
 module.exports = router;
