@@ -52,7 +52,7 @@ module.exports = {
       },
       {
         userId: 2,
-        songId: 33,
+        songId: 7,
         review: "Does anyone understand the lyrics?",
         createdAt: new Date(),
         updatedAt: new Date(),

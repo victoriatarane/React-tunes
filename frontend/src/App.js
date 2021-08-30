@@ -7,7 +7,7 @@ import SongsList from "./components/Songs/index.js";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SideNav from "./components/Navigation/sideNav.js";
-
+import Playlist from "./components/Playlist";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +33,9 @@ function App() {
           </Route>
           <Route path="/songs">
             <SongsList />
+          </Route>
+          <Route path="/playlist">
+            <Playlist />
           </Route>
         </Switch>
       )}

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "bandcamp_app",
+    "password": "bandcamp-password",
+    "database": "bandcamp_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "bandcamp_app",
+    "password": "bandcamp-password",
+    "database": "bandcamp_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}

@@ -4,7 +4,9 @@ const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 const { requireAuth } = require('../../utils/auth');
 
-const { Song, Artist, Review, Like } = require('../../db/models');
+const { Song, Artist, Review, Like, PlaylistSong, Playlist } = require('../../db/models');
+// const { response } = require('express');
+// const { addPlaylistSongs } = require('../../../frontend/src/store/playlist');
 
 const router = express.Router();
 
@@ -36,6 +38,16 @@ router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async
     return res.json({ newReview });
 }));
 
+
+router.post('/api/playlist/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+    const {userId, songId} = req.body;
+    const playlist = await Playlist.findOrCreate(
+        { where: {userId} }
+    );
+    const playlistId = playlist.id;
+    const newPlaylistSong = await PlaylistSong.create({ songId, playlistId });
+    return res.json({ newPlaylistSong });
+}))
 // router.put('/:id(\\d+)/review/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
 
 // }))

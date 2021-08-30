@@ -42,19 +42,19 @@ module.exports = {
       },
       {
         playlistId: 1,
-        songId: 25,
+        songId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         playlistId: 1,
-        songId: 30,
+        songId: 6,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         playlistId: 1,
-        songId: 31,
+        songId: 20,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Songs.css';
 import { likeSong, leaveReview, getSongs } from '../../store/songs.js';
 import Review from './review.js';
-
+import {addPlaylistSongs} from '../../store/playlist.js';
 
 const Song = ({ song }) => {
 
@@ -12,12 +12,13 @@ const Song = ({ song }) => {
     // const history = useHistory();
     const [showReviews, setShowReviews] = useState(false);
     const userId = useSelector((state) => state.session.user.id)
+    
     //const [userId, setUserId] = useState(1);
     // const [songId, setSongId] = useState(1);
     const [review, setReview] = useState('');
     const [likes, setLikes] = useState(false);
     const [numLikes, setNumLikes] = useState(song.Likes.length);
-
+    const [playlistButton, setPlaylistButton] = useState(<i className="far fa-heart" />)
     const songId = song.id;
 
     const handleLikeSubmit = async (e) => {
@@ -46,6 +47,14 @@ const Song = ({ song }) => {
         // console.log(payload)
     }
 
+    const handleAddToPlaylist = () => {
+        // e.preventDefault();
+        setPlaylistButton(<i className="fas fa-heart" />)
+        console.log(song.id)
+        const songId = song.id;
+        dispatch(addPlaylistSongs(songId, userId))
+    }
+
     return (
         <li className="song-li">
             <label className="artist">
@@ -60,6 +69,8 @@ const Song = ({ song }) => {
             </audio>
             <label className="likes">Likes: {numLikes}</label>
             <button onClick={handleLikeSubmit}>Like <i className="far fa-thumbs-up"/></button>
+            <button className="addToPlaylist" type="submit" onClick={(song)=>handleAddToPlaylist}>Add to Playlist {playlistButton}</button>
+    
             <button className="showReviews" onClick={() => setShowReviews(!showReviews)}>View Comments <i className="fas fa-comments"/></button>
             {showReviews ?
                 song.Reviews.map((review) => <Review key={review.id} className="reviewDiv" review={review}></Review>)
