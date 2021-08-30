@@ -3,9 +3,10 @@ import { csrfFetch } from './csrf';
 
 const LOAD = 'songs/LOAD'; // action type
 const ADD_LIKE = 'song/ADD_LIKE';
+const ADD_TO_PLAYLIST = 'song/ADD_TO_PLAYLIST';
 const ADD_REVIEW = 'song/REVIEW';
 // const EDIT_REVIEW = 'song/EDIT_REVIEW';
-// const DELETE_REVIEW = 'song/DELETE_REVIEW';
+const DELETE_REVIEW = 'song/DELETE_REVIEW';
 
 const load = list => ({ // action creator
     type: LOAD,
@@ -16,6 +17,12 @@ const addLike = (like) => {
     return {
         type: ADD_LIKE,
         like,
+    }
+};
+const addSong = (song) => {
+    return {
+        type: ADD_TO_PLAYLIST,
+        song,
     }
 }
 
@@ -31,10 +38,10 @@ const addReview = (review) => {
 //     review,
 // });
 
-// const deleteReview = (reviewId, songId) => ({
-//     type: DELETE_REVIEW,
-//     reviewId,
-// })
+const deleteReview = (reviewId) => ({
+    type: DELETE_REVIEW,
+    payload: reviewId
+})
 
 export const getSongs = () => async dispatch => {
     const response = await csrfFetch(`/api/songs`);
@@ -46,6 +53,20 @@ export const getSongs = () => async dispatch => {
     }
 }
 
+export const addPlaylistSongs = ({ songId, userId }) => async dispatch => {
+    const res = await csrfFetch(`/api/playlist/${songId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(songId, userId),
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addSong(data));
+        return data;
+    }
+}
 
 export const likeSong = (payload) => async dispatch => {
     const res = await csrfFetch(`/api/songs/${payload.songId}/like`, {
@@ -78,22 +99,25 @@ export const leaveReview = (payload) => async (dispatch) => {
     }
 }
 
-// export const deleteReviews = (reviewId) => async (dispatch) => {
-//     const res = await csrfFetch(`/api/songs/:id(\\d+)/review/${reviewId}`, {
-//         method: "DELETE",
-//         headers: {
-//             "Content-Type": 'application/json',
-//         },
-//         body: JSON.stringify(reviewId),
-//     });
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(deleteReview(data.reviewId))
-//         return data;
-//     }
-// }
+export const deleteReviews = ({reviewId}) => async (dispatch) => {
+    const res = await csrfFetch(`/api/${reviewId}/review`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(reviewId),
+    });
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(deleteReview(data))
+        if (data.errors) {
+            return;
+        }
+    }
+}
 
 const songReducer = (state = {}, action) => {
+    let newState;
     switch(action.type){
         case LOAD: {
             const allSongs = {};
@@ -105,6 +129,11 @@ const songReducer = (state = {}, action) => {
                 ...allSongs,
                 list: action.list,
             } 
+        }
+        case ADD_TO_PLAYLIST: {
+            let playlist = { ...state };
+            playlist.songs = action.song;
+            return playlist;
         }
         case (ADD_LIKE):
             let likes = { ...state };
@@ -121,34 +150,18 @@ const songReducer = (state = {}, action) => {
         //         [action.review.id]: action.review,
         //     }
         // }
-        // case (DELETE_REVIEW): {
-        //     const newState = { ...state };
-        //     delete newState[action.reviewId];
-        //     return newState;
-        // }
+        case (DELETE_REVIEW): 
+            // newState = { ...state };
+            // newState.review = [...state.review];
+            // let index = newState.review.findIndex((review) => review.id === action.payload.id)
+            // newState.review.splice(index, 1)
+            // return newState;
+            const newState = { ...state };
+            delete newState[action.reviewId];
+            return newState;
         default:
             return state;
     }
 }
-
-
-// {
-//     const allPokemon = {};
-//     action.list.forEach(pokemon => {
-//         allPokemon[pokemon.id] = pokemon;
-//     });
-//     return {
-//         ...allPokemon,
-//         ...state,
-//         list: sortList(action.list),
-//     };
-// }
-
-
-//thunk action to get a single Song (songId)
-// const fetchSong = (songId) => async (dispatch) => {
-//     const res = await csrfFetch(`/api/song/${songId}`);
-//     const data = await res.json();
-// }
 
 export default songReducer;
