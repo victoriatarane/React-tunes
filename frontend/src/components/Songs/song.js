@@ -47,12 +47,16 @@ const Song = ({ song }) => {
         // console.log(payload)
     }
 
-    const handleAddToPlaylist = () => {
-        // e.preventDefault();
+    const handleAddToPlaylist = async (e) => {
+        e.preventDefault();
         setPlaylistButton(<i className="fas fa-heart" />)
-        console.log(song.id)
+        // console.log(userId)
         const songId = song.id;
-        dispatch(addPlaylistSongs(songId, userId))
+        const payload = {
+            songId,
+            userId,
+        };
+        await dispatch(addPlaylistSongs(payload))
     }
 
     return (
@@ -69,14 +73,14 @@ const Song = ({ song }) => {
             </audio>
             <label className="likes">Likes: {numLikes}</label>
             <button onClick={handleLikeSubmit}>Like <i className="far fa-thumbs-up"/></button>
-            <button className="addToPlaylist" type="submit" onClick={(song)=>handleAddToPlaylist}>Add to Playlist {playlistButton}</button>
+            <button className="addToPlaylist" type="submit" onClick={handleAddToPlaylist}>Add to Playlist {playlistButton}</button>
     
             <button className="showReviews" onClick={() => setShowReviews(!showReviews)}>View Comments <i className="fas fa-comments"/></button>
             {showReviews ?
                 song.Reviews.map((review) => <Review key={review.id} className="reviewDiv" review={review}></Review>)
                 : null}
             <input className="review" value={review} onChange={(e) => setReview(e.target.value)} />
-            <button className="submit" type="submit" onClick={handleReviewSubmit}>Submit Comment <i className="far fa-comment-dots"/></button>
+            <button className="submit" type="submit" onClick={handleReviewSubmit}>Submit Comment</button>
 
 
         </li>
