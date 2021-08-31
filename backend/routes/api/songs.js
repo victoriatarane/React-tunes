@@ -39,8 +39,8 @@ router.post('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async
 }));
 
 
-router.post('/api/playlist/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
-    const {userId, songId} = req.body;
+router.post('/:id(\\d+)/playlist', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+    const {songId, userId} = req.body;
     const playlist = await Playlist.findOrCreate(
         { where: {userId} }
     );
