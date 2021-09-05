@@ -100,25 +100,26 @@ export const leaveReview = (payload) => async (dispatch) => {
     }
 }
 
-export const deleteReviews = ({reviewId}) => async (dispatch) => {
-    const res = await csrfFetch(`/api/${reviewId}/review`, {
+export const deleteReviews = (reviewId) => async (dispatch) => {
+    // console.log(reviewId)
+    const res = await csrfFetch(`/api/songs/${reviewId}/review`, {
         method: "DELETE",
-        headers: {
-            "Content-Type": 'application/json',
-        },
-        body: JSON.stringify(reviewId),
+        // headers: {
+        //     "Content-Type": 'application/json',
+        // },
+        // body: JSON.stringify(reviewId),
     });
     if (res.ok) {
-        const data = await res.json();
-        dispatch(deleteReview(data))
-        if (data.errors) {
-            return;
-        }
+        // const data = await res.json();
+        dispatch(deleteReview(reviewId))
+        // if (data.errors) {
+        //     return;
+        // }
     }
 }
 
 const songReducer = (state = {}, action) => {
-    // let newState;
+    let newState;
     switch(action.type){
         case LOAD: {
             const allSongs = {};
@@ -152,14 +153,14 @@ const songReducer = (state = {}, action) => {
         //     }
         // }
         case (DELETE_REVIEW): 
-            // newState = { ...state };
-            // newState.review = [...state.review];
-            // let index = newState.review.findIndex((review) => review.id === action.payload.id)
-            // newState.review.splice(index, 1)
-            // return newState;
-            const newState = { ...state };
-            delete newState[action.reviewId];
+            newState = { ...state };
+            newState.review = [...state.review];
+            let index = newState.review.findIndex((review) => review.id === action.payload.id)
+            newState.review.splice(index, 1)
             return newState;
+            // const newState = { ...state };
+            // delete newState[action.reviewId];
+            // return newState;
         default:
             return state;
     }

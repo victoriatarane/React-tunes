@@ -52,11 +52,16 @@ router.post('/:id(\\d+)/playlist', csrfProtection, requireAuth, asyncHandler(asy
 
 // }))
 
-router.delete('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+router.delete('/:id(\\d+)/review', asyncHandler(async (req, res) => {
+    const userId = res.params.id;
     let reviewId = req.params.id;
-    let review = await db.Review.findByPk(reviewId)
+    // let reviewId = req.body.id;
+    let review = await Review.findByPk(reviewId)
+    // console.log("REVIEW", review)
+    
     await Review.destroy({where: { id: review.id }});
-    return review.id
+    
+    return reviewId
 
 
 
