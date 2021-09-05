@@ -21,7 +21,7 @@ const Reviews = ({ review }) => {
         <div className="review-display">
             <p className="reviewer" >{author}: </p>
             <p className="review-display">{review.review}</p>
-            <button onClick={(e)=>handleDelete(review)}><i className="fas fa-trash-alt"/></button>
+            <button onClick={()=>handleDelete(review)}><i className="fas fa-trash-alt"/></button>
         </div>
     )
 }

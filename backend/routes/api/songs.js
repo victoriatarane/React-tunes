@@ -53,7 +53,7 @@ router.post('/:id(\\d+)/playlist', csrfProtection, requireAuth, asyncHandler(asy
 // }))
 
 router.delete('/:id(\\d+)/review', asyncHandler(async (req, res) => {
-    const userId = res.params.id;
+    // const userId = res.params.id;
     let reviewId = req.params.id;
     // let reviewId = req.body.id;
     let review = await Review.findByPk(reviewId)
@@ -62,6 +62,11 @@ router.delete('/:id(\\d+)/review', asyncHandler(async (req, res) => {
     await Review.destroy({where: { id: review.id }});
     
     return reviewId
+// router.delete('/:id(\\d+)/review', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+//     let reviewId = req.params.id;
+//     let review = await db.Review.findByPk(reviewId)
+//     await Review.destroy({where: { id: review.id }});
+//     return review.id
 
 
 

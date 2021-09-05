@@ -1,5 +1,10 @@
 
-# Create React App Template
+# REACT TUNES 
+
+This web application is a clone of Bandcamp music app. It has three MVP's:
+1.Song likes,
+2.Comments,
+3.Playlists
 
 A no-frills template from which to create React applications with
 [Create React App](https://github.com/facebook/create-react-app).
