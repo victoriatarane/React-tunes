@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async function (_req, res) {
     const { userId } = req.body;
+    console.log('USER ID', userId)
     const playlist = await Playlist.findOrCreate({ where: {userId}});
     const playlistSongs = await PlaylistSong.findAll({ where : { playlistId: playlist.id }});
     let playlistIds = [];
@@ -20,3 +21,14 @@ router.get('/', asyncHandler(async function (_req, res) {
     const songs = await Song.findAll({ where: { id: { [Op.in]: playlistIds}}});
     return res.json(songs);
 }));
+
+router.post('/add/:songId(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    console.log(req.body, 'REQ BODY!!!')
+    const {songId, userId} = req.body;
+    const playlistSong = await PlaylostSong.create({ songId });
+    const playlist = await Playlist.findOrCreate({ where: {userId}})
+
+    return res.json(post);
+}));
+
+module.exports = router;

@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+// const asyncHandler = require('express-async-handler');
 
 const LOAD = 'playlist/LOAD';
 const ADD_SONG = 'playlist/ADD_SONG';
@@ -33,7 +34,7 @@ export const getPlaylistSongs = () => async dispatch => {
 }
 
 export const addPlaylistSongs = ({songId}) => async dispatch => {
-    const res = await csrfFetch(`/api/playlist/${songId}`, {
+    const res = await csrfFetch(`/api/playlist/add/${songId}`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
@@ -47,13 +48,13 @@ export const addPlaylistSongs = ({songId}) => async dispatch => {
     }
 }
 
-export const deletePlaylistSongs = ({songId}) => async dispatch => {
+export const deletePlaylistSongs = ({songId, userId}) => async dispatch => {
     const res = await csrfFetch(`/api/${songId}/playlist`, {
         method: "DELETE",
         headers: {
             "Content-Type": 'application/json',
         },
-        body: JSON.stringify(songId),
+        body: JSON.stringify({songId, userId}),
     });
     if (res.ok) {
         const data = await res.json();
@@ -79,7 +80,7 @@ const playlistReducer = (state = {}, action) => {
         }
         case ADD_SONG: {
             let playlist = { ...state };
-            playlist.songs = action.song;
+            playlist.song = action.song;
             return playlist;
         }
         case DELETE_SONG: {

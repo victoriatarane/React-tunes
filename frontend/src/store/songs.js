@@ -53,21 +53,21 @@ export const getSongs = () => async dispatch => {
     }
 }
 
-export const addPlaylistSongs = (payload) => async dispatch => {
-    const res = await csrfFetch(`/api/songs/${payload.songId}/playlist`, {
-        method: "POST",
-        headers: {
-            "Content-Type": 'application/json',
-        },
-        body: JSON.stringify(payload),
-    })
-    console.log("RES", res)
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(addSong(data.songId));
-        return data;
-    }
-}
+// export const addPlaylistSongs = (payload) => async dispatch => {
+//     const res = await csrfFetch(`/api/songs/add/${payload.songId}/playlist`, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": 'application/json',
+//         },
+//         body: JSON.stringify(payload),
+//     })
+//     console.log("RES", res)
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(addSong(data.songId));
+//         return data;
+//     }
+// }
 
 export const likeSong = (payload) => async dispatch => {
     const res = await csrfFetch(`/api/songs/${payload.songId}/like`, {
