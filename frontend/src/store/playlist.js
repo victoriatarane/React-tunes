@@ -10,10 +10,10 @@ const load = list => ({ // action creator
     list,
 });
 
-const addSong = (song) => {
+const addSong = (payload) => {
     return {
         type: ADD_SONG,
-        song,
+        payload,
     }
 }
 
@@ -25,7 +25,7 @@ const deleteSong = (song) => {
 }
 
 export const getPlaylistSongs = () => async dispatch => {
-    const res = await csrfFetch(`/api/playlist`);
+    const res = await csrfFetch(`/api/playlist/`);
     if (res.ok) {
         const list = await res.json();
         dispatch(load(list));
@@ -33,13 +33,13 @@ export const getPlaylistSongs = () => async dispatch => {
     }
 }
 
-export const addPlaylistSongs = ({songId}) => async dispatch => {
-    const res = await csrfFetch(`/api/playlist/add/${songId}`, {
+export const addPlaylistSongs = (payload) => async dispatch => {
+    const res = await csrfFetch(`/api/playlist/add/${payload.songId}`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
         },
-        body: JSON.stringify(songId),
+        body: JSON.stringify(payload),
     })
     if (res.ok){
         const data = await res.json();
@@ -80,7 +80,7 @@ const playlistReducer = (state = {}, action) => {
         }
         case ADD_SONG: {
             let playlist = { ...state };
-            playlist.song = action.song;
+            playlist.payload.songId = action.payload.songId;
             return playlist;
         }
         case DELETE_SONG: {

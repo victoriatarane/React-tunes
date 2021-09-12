@@ -23,12 +23,12 @@ router.get('/', asyncHandler(async function (_req, res) {
 }));
 
 router.post('/add/:songId(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    console.log(req.body, 'REQ BODY!!!')
     const {songId, userId} = req.body;
-    const playlistSong = await PlaylostSong.create({ songId });
     const playlist = await Playlist.findOrCreate({ where: {userId}})
+    const playlistSong = await PlaylistSong.create({ songId, playlistId: playlist.id });
+    // console.log(req.body, 'REQ BODY!!!')
 
-    return res.json(post);
+    return res.json(playlistSong);
 }));
 
 module.exports = router;
