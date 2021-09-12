@@ -19,7 +19,7 @@ function SideNav({ isLoaded }) {
                     </div>
                     <div className="sidebarlink">
                         <i className="far fa-play-circle">
-                            <NavLink className="sidebarlink" to="/playlists">My Playlists</NavLink>
+                            <NavLink className="sidebarlink" to="/playlist">My Playlists</NavLink>
                         </i>
                     </div>
                 </nav>

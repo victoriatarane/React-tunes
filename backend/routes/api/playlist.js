@@ -9,16 +9,21 @@ const { Song, Artist, Playlist, PlaylistSong } = require('../../db/models');
 const router = express.Router();
 
 
-router.get('/', asyncHandler(async function (_req, res) {
-    const { userId } = req.body;
-    console.log('USER ID', userId)
-    const playlist = await Playlist.findOrCreate({ where: {userId}});
-    const playlistSongs = await PlaylistSong.findAll({ where : { playlistId: playlist.id }});
+router.get('/:id(\\d+)', asyncHandler(async function (req, res) {
+    const userId = req.params.id;
+    const playlist = await Playlist.findOrCreate({ where: {userId: userId}});
+    const playlistSongs = await PlaylistSong.findAll({ where : { playlistId: playlist[0].dataValues.id }});
     let playlistIds = [];
     playlistSongs.forEach(song => {
-        playlistIds.push(songId)
+        playlistIds.push(song.dataValues.songId)
     })
-    const songs = await Song.findAll({ where: { id: { [Op.in]: playlistIds}}});
+    // console.log(playlistIds, '---THE IDS')
+    
+    const songs = playlistIds.map(async (id) =>{
+        await Song.findOne({where: {id: id}});
+        // console.log(songs, '--songs')
+    });
+    console.log(songs, 'songs THIS!')
     return res.json(songs);
 }));
 

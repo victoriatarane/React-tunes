@@ -24,10 +24,11 @@ const deleteSong = (song) => {
     }
 }
 
-export const getPlaylistSongs = () => async dispatch => {
-    const res = await csrfFetch(`/api/playlist/`);
+export const getPlaylistSongs = (userId) => async dispatch => {
+    const res = await csrfFetch(`/api/playlist/${userId}`);
     if (res.ok) {
         const list = await res.json();
+        console.log('list', list)
         dispatch(load(list));
         return list;
     }
@@ -69,7 +70,7 @@ const playlistReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD: {
             const allSongs = {};
-            action.lost.forEach(song => {
+            action.list.forEach(song => {
                 allSongs[song.id] = song;
             })
             return {

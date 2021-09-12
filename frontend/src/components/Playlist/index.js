@@ -6,18 +6,16 @@ import PlaylistSongs from './paylistSongs';
 import { addPlaylistSongs, getPlaylistSongs, deletePlaylistSongs } from '../../store/playlist.js';
 // import playlist from '../../../../backend/db/models/playlist';
 
-const Playlist = ({ userId }) => {
-    const songs = [{"Artist" : "Nirvana", "title": "This is it", "songUrl": "youtube.com"}]
-    const mysongs = useSelector(state=> state);
-    console.log("mysongs", mysongs)
+const Playlist = () => {
+    const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.user.id);
+    const songs = dispatch(getPlaylistSongs(userId))
     
     
     return (
         <div>
-            {songs?.map(song=>
-                <PlaylistSongs song={song} />
-            )}
-            <h1>{mysongs}</h1>
+            {Object.values(songs)?.map(item=><PlaylistSongs item={item} />)}
+            <h1>{userId}</h1>
         </div>
     )       
 }

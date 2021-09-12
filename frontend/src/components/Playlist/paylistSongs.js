@@ -7,19 +7,20 @@ const PlaylistSongs = (song) => {
     const handleDelete = (song) => {
         // e.preventDefault();
         // console.log(song.id)
-        dispatch(deletePlaylistSongs(song.id))
+        dispatch(deletePlaylistSongs(song.id));
+        
     }
     return (
         <li className="song-li">
             <label className="artist">
-                <p>{song.Artist.artistName}</p>
+                {/* <p>{song}</p> */}
             </label>
             <label className="song-name">
                 <i className="fas fa-compact-disc" />
-                <p>{song.title}</p>
+                {/* <p>{song.title}</p> */}
             </label>
             <audio className="audio" controls>
-                <source src={song.songUrl} type="audio/ogg"></source>
+                {/* <source src={song.songUrl} type="audio/ogg"></source> */}
             </audio>
             <button className="delete" type="submit" onClick={handleDelete}>Submit Comment <i className="far fa-trash" /></button>
         </li>

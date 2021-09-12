@@ -19,12 +19,12 @@ const addLike = (like) => {
         like,
     }
 };
-const addSong = (song) => {
-    return {
-        type: ADD_TO_PLAYLIST,
-        song,
-    }
-}
+// const addSong = (song) => {
+//     return {
+//         type: ADD_TO_PLAYLIST,
+//         song,
+//     }
+// }
 
 const addReview = (review) => {
     return {
