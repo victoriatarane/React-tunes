@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 const { requireAuth } = require('../../utils/auth');
+const { Op } = require('sequelize');
 
 const { Song, Artist, Playlist, PlaylistSong } = require('../../db/models');
 
@@ -16,14 +17,10 @@ router.get('/:id(\\d+)', asyncHandler(async function (req, res) {
     let playlistIds = [];
     playlistSongs.forEach(song => {
         playlistIds.push(song.dataValues.songId)
-    })
-    // console.log(playlistIds, '---THE IDS')
-    
-    const songs = playlistIds.map(async (id) =>{
-        await Song.findOne({where: {id: id}});
-        // console.log(songs, '--songs')
     });
-    console.log(songs, 'songs THIS!')
+    const songs = await Song.findAll({where: {[Op.or]: playlistIds.map((id)=>{
+        return {id: id}
+    })}});
     return res.json(songs);
 }));
 

@@ -17,7 +17,7 @@ const PlaylistSongs = (song) => {
             </label>
             <label className="song-name">
                 <i className="fas fa-compact-disc" />
-                {/* <p>{song.title}</p> */}
+                {/* <p>{song}</p> */}
             </label>
             <audio className="audio" controls>
                 {/* <source src={song.songUrl} type="audio/ogg"></source> */}

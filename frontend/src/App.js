@@ -34,7 +34,7 @@ function App() {
           <Route path="/songs">
             <SongsList />
           </Route>
-          <Route path="/playlist/">
+          <Route path="/playlist" exact>
             <Playlist />
           </Route>
         </Switch>

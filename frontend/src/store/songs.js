@@ -125,7 +125,7 @@ const songReducer = (state = {}, action) => {
             const allSongs = {};
             action.list.forEach(song => {
                 allSongs[song.id] = song;
-            })
+            });
             return {
                 ...state, 
                 ...allSongs,
