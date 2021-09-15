@@ -4,14 +4,17 @@ import { getSongs } from "../../store/songs.js";
 import './Songs.css';
 import { useEffect } from 'react';
 import Song from './song';
+// import { addPlaylistSongs, getPlaylistSongs, deletePlaylistSongs } from '../../store/playlist.js';
 
 function SongsList() {
     const dispatch = useDispatch();
     //const sessionUser = useSelector((state) => state.session.user);
     const songs = useSelector((state) => state.songs);
     // console.log(songs)
+    // const userId = useSelector(state => state.session.user.id);
     useEffect(() => {
         dispatch(getSongs())
+        // dispatch(getPlaylistSongs(userId));
     }, [dispatch]);
 
     return (

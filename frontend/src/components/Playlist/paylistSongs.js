@@ -1,6 +1,8 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addPlaylistSongs, getPlaylistSongs, deletePlaylistSongs } from '../../store/playlist.js';
+import './Playlist.css';
+
 
 const PlaylistSongs = (song) => {
     const dispatch = useDispatch();
