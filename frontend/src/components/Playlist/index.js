@@ -10,16 +10,16 @@ import { addPlaylistSongs, getPlaylistSongs, deletePlaylistSongs } from '../../s
 // import playlist from '../../../../backend/db/models/playlist';
 
 const Playlist = () => {
-    console.log('do we get here')
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user.id);
-    const [update, setUpdate] = useState(0);
-    // let songs 
-    let theSongs;
-    const songs = useSelector(state => state.songs);
+    // const [update, setUpdate] = useState(0);
+    // let songs;
     useEffect(() => {
         dispatch(getPlaylistSongs(userId));
     }, [dispatch, userId]);
+    const songs = useSelector(state => Object.values(state)); 
+    // let songs = dispatch(getPlaylistSongs(userId))
+    console.log('state', songs)
     // songs()
 
     // console.log('songs', songs)
@@ -27,8 +27,10 @@ const Playlist = () => {
     return (
         <div className="playlist-field">
             {/* <button onClick={showPlaylist}>Show Playlist</button> */}
-            {Object.values(songs)?.map(song=>      
-                <Song song={song} key={song.id}/>)}
+            {/* {Object.values(songs)?.map(song=>      
+                <Song song={song} key={song.id}/>)} */}
+
+            {/* {playlistIds.map(id=><h1>{id}</h1>)} */}
             <h1>{userId}</h1>
         </div>
     )       

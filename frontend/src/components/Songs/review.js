@@ -13,8 +13,9 @@ const Reviews = ({ review }) => {
         // console.log(review.id)
         const reviewId = review.id;
         await dispatch(deleteReviews(reviewId));
-        dispatch(getSongs())
-        return review;
+        dispatch(getSongs());
+        window.location.reload(false);
+        
     }
 
     return (

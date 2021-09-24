@@ -19,7 +19,7 @@ export const BrowseMusic = ({ song }) => {
     //     dispatch(selectArtist())
     // }, [artist])
     return (
-        < div>
+        <div>
             <select
             onChange={(e) => setArtist(e.target.value)}
             value={artist}>
@@ -34,3 +34,4 @@ export const BrowseMusic = ({ song }) => {
         </div>
     )
 }
+export default BrowseMusic;

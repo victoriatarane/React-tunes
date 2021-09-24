@@ -3,9 +3,11 @@
   /* background-image: url("/Users/Vic/Desktop/aA/react_tunes/react_tunes/frontend/src/marbles.jpeg"); */
   /* background-position: center right; */
   position: fixed;
+  left: 0px;
   top: 0px; 
   width: 100%;
   margin-left: 0px;
+  z-index: 1;
 }
 
 .side-nav {
@@ -58,7 +60,7 @@
   margin-top: 0px;
   margin-left: 100px;
   margin-right: 100px;
-  background-color: rgb(189 0 38);
+  /* background-color: rgb(189 0 38); */
   border-radius: 10px;
 }
 /*

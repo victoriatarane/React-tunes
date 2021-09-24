@@ -30,7 +30,7 @@ const Song = ({ song }) => {
             songId,
             likes,
         };
-        await dispatch(likeSong(payload))
+        dispatch(likeSong(payload))
         dispatch(getSongs())
     }
 
@@ -51,12 +51,12 @@ const Song = ({ song }) => {
         e.preventDefault();
         setPlaylistButton(<i className="fas fa-heart" />)
         // console.log(userId)
-        const songId = song.id;
-        const payload = {
-            songId,
-            userId,
-        };
-        await dispatch(addPlaylistSongs(payload))
+        // const songId = song.id;
+        // const payload = {
+        //     songId,
+        //     userId,
+        // };
+        // await dispatch(addPlaylistSongs(payload))
     }
 
     return (

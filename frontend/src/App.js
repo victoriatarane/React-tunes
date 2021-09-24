@@ -6,7 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import SongsList from "./components/Songs/index.js";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SideNav from "./components/Navigation/sideNav.js";
+//import SideNav from "./components/Navigation/sideNav.js";
 import Playlist from "./components/Playlist";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   return isLoaded && (
     <>
       <Navigation isLoaded={isLoaded} />
-      <SideNav />
+
       {isLoaded && (
         <Switch>
           <Route exact path="/">
