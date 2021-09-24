@@ -10,7 +10,7 @@ module.exports = {
     development: {
         // username,
         // password,
-        database: "products_api_development",
+        database,
         // host,
         dialect: 'postgres',
         seederStorage: 'sequelize',
@@ -19,14 +19,14 @@ module.exports = {
         use_env_variable: 'DATABASE_URL',
         dialect: 'postgres',
         seederStorage: 'sequelize',
-        "dialectOptions": {
-            "ssl": true
-        },
-        // dialectOptions: {
-        //     ssl: {
-        //         require: true,
-        //         rejectUnauthorized: false,
-        //     },
+        // "dialectOptions": {
+        //     "ssl": true
         // },
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false,
+            },
+        },
     },
 };
